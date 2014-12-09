@@ -1,0 +1,7 @@
+{
+  "name": "aura-app",
+  "version": "0.0.0",
+  "dependencies": {
+    "aura": "*"
+  }
+}
