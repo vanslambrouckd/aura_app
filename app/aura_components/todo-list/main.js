@@ -16,7 +16,7 @@ define(['text!./todo-list.html', 'text!./todo-item.html', 'underscore'], functio
         initialize: function() {
             this.tasks = [];
             //executed automatically
-            //console.log('thiz', this);
+            //console.log('this', this);
             this.sandbox.on('todos.add', this.addTodo, this);
             this.sandbox.on('todos.delete', this.deleteTodo, this);
 

@@ -1,14 +1,13 @@
-define(['!text./todo-form.html', 'underscore'], function(tpl, _) {
+define(['text!./todo-form.html', 'underscore'], function(tpl, _) {
     return {
         initialize: function() {
-            //console.log('this', this);
-            this.$input = this.$el.find('input');
             this.render();
         },
         render: function() {
-            //console.log('this', this);
-            //console.log('el', this.$el);
-            //console.log(this.$input);
+            this.html(_.template(tpl, {}));
+            this.$input = this.$el.find('input');
+
+            console.log(this.$el);
             this.$input.on('keyup', _.bind(this.checkSubmit, this));
         },
         checkSubmit: function(e) {
