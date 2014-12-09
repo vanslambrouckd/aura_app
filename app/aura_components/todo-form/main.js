@@ -1,4 +1,4 @@
-define([], function() {
+define(['!text./todo-form.html', 'underscore'], function(tpl, _) {
     return {
         initialize: function() {
             //console.log('this', this);
