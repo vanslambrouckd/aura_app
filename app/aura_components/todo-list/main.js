@@ -16,26 +16,34 @@ define(['text!./todo-list.html', 'text!./todo-item.html', 'underscore'], functio
         initialize: function() {
             this.tasks = [];
             //executed automatically
-            console.log('thiz', this);
+            //console.log('thiz', this);
             this.sandbox.on('todos.add', this.addTodo, this);
             this.sandbox.on('todos.delete', this.deleteTodo, this);
 
             this.tasks = this.getTasks();
+
             this.render();
+
+            var that = this;
+            this.tasks.forEach(function(task) {
+                that.addTodo(task);
+            });
         },
         render: function() {
             //console.clear();
             console.log('todo-list render');
 
+            /*
             var htmlItems = _.template(tplItem, {
                 tasks: this.tasks
             });
-
+            */
             var htmlList = _.template(tplList, {
-                todo_items: htmlItems
+
             });
             //htmlList.append(htmlItems);
             this.html(htmlList);
+            this.$list = this.$el.find('ul');
 
             /*
             var that = this;
@@ -56,9 +64,14 @@ define(['text!./todo-list.html', 'text!./todo-item.html', 'underscore'], functio
             */
         },
         addTodo: function(todo) {
+            //console.log('this', this);
             this.tasks.push(todo);
-            //_.template(t)
-            this.$el.append('<li>' + todo.name + '<a data-action="delete">delete</a></li>');
+
+            var html = _.template(tplItem, todo);
+            //console.log(html);
+            this.$list.append(html);
+
+            //this.$el.append('<li>' + todo.name + '<a data-action="delete">delete</a></li>');
             //this.render();
             //console.log('this', this);
         },
